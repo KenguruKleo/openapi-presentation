@@ -5,12 +5,13 @@ const Service = require('./Service');
 * Retrieve information about API.
 * Retrieve information about API.
 *
-* returns inline_response_200
+* returns AppVersion
 * */
 const getApiInfo = () => new Promise(
   async (resolve, reject) => {
     try {
       resolve(Service.successResponse({
+        version: "0.0.1"
       }));
     } catch (e) {
       reject(Service.rejectResponse(

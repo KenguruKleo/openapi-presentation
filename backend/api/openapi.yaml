@@ -115,9 +115,9 @@ components:
         version:
           description: API version
           type: string
+      required:
+      - version
       type: object
-      requred:
-        - version
     Student_allOf:
       properties:
         id:
