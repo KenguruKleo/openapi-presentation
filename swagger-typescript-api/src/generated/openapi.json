@@ -1,0 +1,226 @@
+{
+  "openapi": "3.0.1",
+  "info": {
+    "description": "Online School Application is where students and teachers meet together",
+    "title": "Online School",
+    "version": "0.1.1"
+  },
+  "servers": [
+    {
+      "url": "/"
+    }
+  ],
+  "paths": {
+    "/version": {
+      "get": {
+        "description": "Retrieve information about API.",
+        "operationId": "getApiInfo",
+        "responses": {
+          "200": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/AppVersion"
+                }
+              }
+            },
+            "description": "successful operation"
+          }
+        },
+        "summary": "Retrieve information about API.",
+        "tags": [
+          "Admin Service"
+        ],
+        "x-eov-operation-handler": "controllers/AdminServiceController"
+      }
+    },
+    "/admin/reset": {
+      "post": {
+        "description": "Reset all data.",
+        "operationId": "resetData",
+        "responses": {
+          "200": {
+            "content": {},
+            "description": "successful operation"
+          }
+        },
+        "summary": "Reset all data.",
+        "tags": [
+          "Admin Service"
+        ],
+        "x-eov-operation-handler": "controllers/AdminServiceController"
+      }
+    },
+    "/students": {
+      "get": {
+        "operationId": "getStudents",
+        "responses": {
+          "200": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "items": {
+                    "$ref": "#/components/schemas/Student"
+                  },
+                  "type": "array"
+                }
+              }
+            },
+            "description": "successful operation"
+          },
+          "404": {
+            "content": {},
+            "description": "Students not found"
+          }
+        },
+        "security": [
+          {
+            "api_key": []
+          }
+        ],
+        "summary": "retrieve all students",
+        "tags": [
+          "Students"
+        ],
+        "x-eov-operation-handler": "controllers/StudentsController"
+      },
+      "post": {
+        "operationId": "createStudent",
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/StudentBase"
+              }
+            }
+          },
+          "description": "Student data",
+          "required": true
+        },
+        "responses": {
+          "200": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Student"
+                }
+              }
+            },
+            "description": "successful operation"
+          }
+        },
+        "security": [
+          {
+            "api_key": []
+          }
+        ],
+        "summary": "Create new student",
+        "tags": [
+          "Students"
+        ],
+        "x-eov-operation-handler": "controllers/StudentsController"
+      }
+    }
+  },
+  "components": {
+    "schemas": {
+      "StudentStatus": {
+        "default": "IN_REVIEW",
+        "enum": [
+          "IN_REVIEW",
+          "CREATED",
+          "DELETED"
+        ],
+        "type": "string"
+      },
+      "StudentBase": {
+        "example": {
+          "name": "name",
+          "id": "046b6c7f-0b8a-43b9-b35d-6489e6daee91"
+        },
+        "properties": {
+          "id": {
+            "format": "uuid",
+            "type": "string"
+          },
+          "name": {
+            "type": "string"
+          },
+          "status": {
+            "$ref": "#/components/schemas/StudentStatus"
+          }
+        },
+        "required": [
+          "name"
+        ],
+        "type": "object"
+      },
+      "Student": {
+        "allOf": [
+          {
+            "$ref": "#/components/schemas/StudentBase"
+          },
+          {
+            "$ref": "#/components/schemas/Student_allOf"
+          }
+        ]
+      },
+      "AppVersion": {
+        "example": {
+          "app": "app",
+          "version": "version"
+        },
+        "properties": {
+          "app": {
+            "description": "API name",
+            "type": "string"
+          },
+          "version": {
+            "description": "API version",
+            "type": "string"
+          }
+        },
+        "type": "object",
+        "required": [
+          "version"
+        ]
+      },
+      "Student_allOf": {
+        "properties": {
+          "id": {
+            "format": "uuid",
+            "type": "string"
+          },
+          "status": {
+            "$ref": "#/components/schemas/StudentStatus"
+          }
+        },
+        "required": [
+          "id",
+          "name",
+          "status"
+        ],
+        "type": "object"
+      }
+    },
+    "securitySchemes": {
+      "codingapp_auth": {
+        "flows": {
+          "implicit": {
+            "authorizationUrl": "http://petstore.swagger.io/oauth/dialog",
+            "scopes": {
+              "write:students": "modify Students",
+              "read:students": "read Students"
+            }
+          }
+        },
+        "type": "oauth2"
+      },
+      "api_key": {
+        "in": "header",
+        "name": "api_key",
+        "type": "apiKey"
+      }
+    }
+  }
+}

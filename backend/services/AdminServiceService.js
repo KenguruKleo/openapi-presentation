@@ -11,7 +11,7 @@ const getApiInfo = () => new Promise(
   async (resolve, reject) => {
     try {
       resolve(Service.successResponse({
-        version: "0.0.1"
+        version: '0.0.1',
       }));
     } catch (e) {
       reject(Service.rejectResponse(

@@ -11,6 +11,9 @@
 
 export type StudentStatus = "IN_REVIEW" | "CREATED" | "DELETED";
 
+/**
+ * @example {"name":"name","id":"046b6c7f-0b8a-43b9-b35d-6489e6daee91"}
+ */
 export interface StudentBase {
   /** @format uuid */
   id?: string;
@@ -18,7 +21,24 @@ export interface StudentBase {
   status?: StudentStatus;
 }
 
-export type Student = StudentBase & { id: string; status: StudentStatus };
+export type Student = StudentBase & StudentAllOf;
+
+/**
+ * @example {"app":"app","version":"version"}
+ */
+export interface AppVersion {
+  /** API name */
+  app?: string;
+
+  /** API version */
+  version: string;
+}
+
+export interface StudentAllOf {
+  /** @format uuid */
+  id: string;
+  status: StudentStatus;
+}
 
 export type QueryParamsType = Record<string | number, any>;
 export type ResponseFormat = keyof Omit<Body, "body" | "bodyUsed">;
@@ -65,7 +85,7 @@ export enum ContentType {
 }
 
 export class HttpClient<SecurityDataType = unknown> {
-  public baseUrl: string = "";
+  public baseUrl: string = "/";
   private securityData: SecurityDataType | null = null;
   private securityWorker?: ApiConfig<SecurityDataType>["securityWorker"];
   private abortControllers = new Map<CancelToken, AbortController>();
@@ -231,6 +251,7 @@ export class HttpClient<SecurityDataType = unknown> {
 /**
  * @title Online School
  * @version 0.1.1
+ * @baseUrl /
  *
  * Online School Application is where students and teachers meet together
  */
@@ -245,7 +266,7 @@ export class Api<SecurityDataType extends unknown> extends HttpClient<SecurityDa
      * @request GET:/version
      */
     getApiInfo: (params: RequestParams = {}) =>
-      this.request<{ app?: string; version?: string }, any>({
+      this.request<AppVersion, any>({
         path: `/version`,
         method: "GET",
         format: "json",
