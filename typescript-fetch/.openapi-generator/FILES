@@ -1,0 +1,12 @@
+.openapi-generator-ignore
+apis/AdminServiceApi.ts
+apis/StudentsApi.ts
+apis/index.ts
+index.ts
+models/InlineResponse200.ts
+models/Student.ts
+models/StudentAllOf.ts
+models/StudentBase.ts
+models/StudentStatus.ts
+models/index.ts
+runtime.ts
