@@ -21,14 +21,6 @@ const onValidate = ({response, validationError, method, path}: ValidationResult)
     `;
 
     console.error(fullErrorMessage);
-
-    switch (path) {
-      case "/version": {
-        throw new Error(fullErrorMessage)
-      }
-      default:
-        break;
-    }
   }
 };
 

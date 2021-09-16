@@ -13,6 +13,8 @@ Implement necessary Services
 ```shell
 create-react-app swagger-typescript-api --template typescript
 
+cd swagger-typescript-api
+
 npm run generate:types
 # ^^^ it is a shortcut for
 # npx swagger-typescript-api -p ../openapi.yaml -o src/generated/ -n openapi.ts --union-enums
