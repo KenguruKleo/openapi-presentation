@@ -7,7 +7,9 @@ async function bootstrap() {
 
   const config = new DocumentBuilder()
     .setTitle('Online School')
-    .setDescription('Online School Application is where students and teachers meet together')
+    .setDescription(
+      'Online School Application is where students and teachers meet together',
+    )
     .setVersion('0.1.0')
     .build();
   const document = SwaggerModule.createDocument(app, config);
