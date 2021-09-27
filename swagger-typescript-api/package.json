@@ -46,6 +46,6 @@
   "devDependencies": {
     "http-proxy-middleware": "^2.0.1",
     "js-yaml": "^3.14.1",
-    "openapi-runtime-validator": "^1.0.8"
+    "openapi-runtime-validator": "^1.1.0"
   }
 }

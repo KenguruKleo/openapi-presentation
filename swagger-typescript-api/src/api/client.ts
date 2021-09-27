@@ -19,6 +19,6 @@ const fetchWithInterceptor = (input: RequestInfo, init?: RequestInit): Promise<R
 };
 
 export const client = new Api({
-  customFetch: fetchWithInterceptor,
+  //customFetch: fetchWithInterceptor,
   baseUrl: "/api"
 });

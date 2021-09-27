@@ -1,20 +1,24 @@
 import React, {useEffect, useState} from 'react';
 import './App.css';
 import {client} from "./api/client";
+import {AppVersion} from "./generated/openapi";
+import {Version} from "./Version";
 
 function App() {
-  const [version, setVersion] = useState("");
+  const [appVersion, setAppVersion] = useState<AppVersion>();
+  const [error, setError] = useState("");
 
   useEffect(() => {
     client.version.getApiInfo()
-      .then(res => setVersion(res.data.version))
-      .catch(() => setVersion("Get version failed"));
+      .then(res => setAppVersion(res.data))
+      .catch(() => setError("Get version failed"));
   }, []);
 
   return (
     <div className="App">
       <h1>OpenAPI runtime validation</h1>
-      <h2>BE version: {version}</h2>
+      {appVersion!! && <h2><Version appVersion={appVersion} /></h2>}
+      {error!! && <h2>{error}</h2>}
     </div>
   );
 }

@@ -21,6 +21,8 @@ const onValidate = ({response, validationError, method, path}: ValidationResult)
     `;
 
     console.error(fullErrorMessage);
+
+    //throw new Error(fullErrorMessage);
   }
 };
 

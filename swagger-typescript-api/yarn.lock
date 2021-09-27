@@ -7760,10 +7760,10 @@ openapi-response-validator@^9.3.0:
     ajv "^8.4.0"
     openapi-types "^9.3.0"
 
-openapi-runtime-validator@^1.0.8:
-  version "1.0.8"
-  resolved "https://registry.yarnpkg.com/openapi-runtime-validator/-/openapi-runtime-validator-1.0.8.tgz#e0393c614a3ff6fbe83ce23367546dccaa5bd6e6"
-  integrity sha512-Pn0WNv9iHTghhHciAvJvBTJLVpZ3cKTdRFOk6G0Lnjks5o6v88mjG0FOSnpCNOoSa6t/WyGDeH8yEYPKrYD/Lw==
+openapi-runtime-validator@^1.1.0:
+  version "1.1.0"
+  resolved "https://registry.yarnpkg.com/openapi-runtime-validator/-/openapi-runtime-validator-1.1.0.tgz#be05e785c868f92220d392e3e21ca4efe873fc33"
+  integrity sha512-d4Dsx1EOuTiNB3x1zNxilsB42WePu2MKao/DaUSNBcZ6MzTiv9u4QIBpQElMYXbYvaDSlUuh8y8QOjeKM4iuzA==
   dependencies:
     combos "^0.2.0"
     openapi-response-validator "^9.3.0"
