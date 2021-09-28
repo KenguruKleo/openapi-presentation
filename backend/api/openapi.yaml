@@ -78,6 +78,20 @@ paths:
       x-eov-operation-handler: controllers/StudentsController
 components:
   schemas:
+    AppVersion:
+      example:
+        app: app
+        version: version
+      properties:
+        app:
+          description: API name
+          type: string
+        version:
+          description: API version
+          type: string
+      required:
+      - version
+      type: object
     StudentStatus:
       default: IN_REVIEW
       enum:
@@ -104,20 +118,6 @@ components:
       allOf:
       - $ref: '#/components/schemas/StudentBase'
       - $ref: '#/components/schemas/Student_allOf'
-    AppVersion:
-      example:
-        app: app
-        version: version
-      properties:
-        app:
-          description: API name
-          type: string
-        version:
-          description: API version
-          type: string
-      required:
-      - version
-      type: object
     Student_allOf:
       properties:
         id:
